@@ -10,12 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('invoices', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained('users');
+    $table->string('invoice_number')->unique();
+    $table->string('address');
+    $table->string('postal_code');
+    $table->integer('total_price');
+    $table->timestamps();
+});
+}
 
     /**
      * Reverse the migrations.
