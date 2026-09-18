@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,27 +11,28 @@ class AdminPagesTest extends TestCase
 
     public function test_halaman_tambah_barang_bisa_diakses()
     {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get('/admin/items/create');
+        $response = $this->loginAsUser()->get('/admin/items/create');
 
         $response->assertStatus(200);
     }
 
     public function test_halaman_kelola_kategori_bisa_diakses()
     {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->get('/admin/categories');
+        $response = $this->loginAsUser()->get('/admin/categories');
 
         $response->assertStatus(200);
     }
 
     public function test_halaman_daftar_barang_bisa_diakses()
     {
-        $user = User::factory()->create();
+        $response = $this->loginAsUser()->get('/admin/items');
 
-        $response = $this->actingAs($user)->get('/admin/items');
+        $response->assertStatus(200);
+    }
+
+    public function test_dashboard_bisa_diakses()
+    {
+        $response = $this->loginAsUser()->get('/dashboard');
 
         $response->assertStatus(200);
     }

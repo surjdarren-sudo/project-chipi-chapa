@@ -8,8 +8,9 @@ export default defineConfig({
            input: [
     'resources/css/app.css',
     'resources/js/app.jsx',
-    'resources/js/admin-create-item.jsx',
-    'resources/js/manage-categories.jsx',
+    'resources/js/adminCreateItem.jsx',
+    'resources/js/manageCategories.jsx',
+    'resources/js/dashboardStats.jsx',
 ],
             refresh: true,
         }),

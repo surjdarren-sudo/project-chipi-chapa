@@ -1,80 +1,157 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Pertama Darren - Perusahaan Chipi Chapa</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Project Pertama Darren</title>
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #06b6d4 0%, #2563eb 60%, #1d4ed8 100%);
+            padding: 24px;
         }
+
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px 28px;
+        }
+        .topbar a {
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-login { background: rgba(255,255,255,0.9); color: #1d4ed8; }
+        .btn-register { background: #1e293b; color: white; }
+
+        .card {
+            background: #f8fbff;
+            padding: 48px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #0f172a;
+            margin: 0;
+            line-height: 1.3;
+        }
+        h1 .highlight { color: #2563eb; }
+
+        .desc {
+            color: #475569;
+            font-size: 15px;
+            margin: 16px 0 20px;
+            line-height: 1.5;
+        }
+        .desc strong { color: #1e293b; }
+
+        .quote {
+            background: white;
+            border: 1px solid #dbeafe;
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .menu a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            transition: transform 0.1s;
+        }
+        .menu a:hover { transform: translateY(-2px); }
+        .btn-items { background: #2563eb; }
+        .btn-add { background: #059669; }
+        .btn-categories { background: #1e293b; }
+
+        .guest-note {
+            color: #475569;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .guest-note a { color: #2563eb; font-weight: bold; text-decoration: none; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-cyan-500 via-sky-600 to-blue-700 min-h-screen flex items-center justify-center p-4">
-
-    <!-- Container Utama / Card -->
-    <div class="max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl text-center space-y-6 border border-white/20 relative overflow-hidden">
-        
-        <!-- Hiasan Ornamen Background -->
-        <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-200/50 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-blue-300/40 rounded-full blur-2xl pointer-events-none"></div>
-
-        <!-- Header Status Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-sky-800 text-xs font-semibold tracking-wide">
-            <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-            </span>
-            Perusahaan Chipi Chapa
-        </div>
-
-        <!-- Konten Ucapan & Teks -->
-        <div class="space-y-3">
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight leading-snug">
-                Halo, Selamat datang ke <br>
-                <span class="bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
-                    website chipi chapa
-                </span>
-            </h1>
-            
-            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Ini adalah sebuah website untuk update stok penjualan <strong>dari perusahaan-chipi-chapa</strong> 🚀
-            </p>
-
-            <p class="text-xs sm:text-sm font-medium text-sky-700 bg-sky-50 py-2 px-3 rounded-xl border border-sky-100 inline-block">
-                Semoga bisa tercapai target stock tepat waktu
-            </p>
-        </div>
-
-        <!-- Menu Tombol Navigasi (Sesuai Route Bawaan) -->
-        <div class="flex flex-col gap-3 pt-2">
-            <!-- Link 1: Lihat Daftar Barang -->
-            <a href="{{ route('admin.items.list') }}" 
-               class="flex items-center justify-center gap-2.5 px-5 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-2xl shadow-lg shadow-blue-600/25 transition-all duration-200 transform hover:-translate-y-0.5">
-                <span class="text-lg">📦</span>
-                <span>Lihat Daftar Barang</span>
-            </a>
-
-            <!-- Link 2: Tambah Barang -->
-            <a href="{{ route('admin.items.create') }}" 
-               class="flex items-center justify-center gap-2.5 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold rounded-2xl shadow-lg shadow-emerald-600/25 transition-all duration-200 transform hover:-translate-y-0.5">
-                <span class="text-lg">➕</span>
-                <span>Tambah Barang</span>
-            </a>
-
-            <!-- Link 3: Kelola Kategori -->
-            <a href="{{ route('admin.categories') }}" 
-               class="flex items-center justify-center gap-2.5 px-5 py-3 bg-slate-800 hover:bg-slate-900 active:bg-black text-white font-semibold rounded-2xl shadow-lg shadow-slate-800/20 transition-all duration-200 transform hover:-translate-y-0.5">
-                <span class="text-lg">🏷️</span>
-                <span>Kelola Kategori</span>
-            </a>
-        </div>
-
+<body>
+    <div class="topbar">
+        @auth
+            <a class="btn-login" href="{{ route('dashboard') }}">Dashboard</a>
+        @else
+            <a class="btn-login" href="{{ route('login') }}">Login</a>
+            <a class="btn-register" href="{{ route('register') }}">Register</a>
+        @endauth
     </div>
 
+    <div class="card">
+        <span class="badge"><span class="dot"></span> Perusahaan Chipi Chapa</span>
+
+        <h1>Halo, Selamat datang ke<br><span class="highlight">website chipi chapa</span></h1>
+
+        <p class="desc">
+            Ini adalah sebuah website untuk update stok penjualan <strong>dari perusahaan-chipi-chapa</strong> 🚀
+        </p>
+
+        <div class="quote">Semoga bisa tercapai target stock tepat waktu</div>
+
+        @auth
+            <div class="menu">
+                <a class="btn-items" href="{{ route('admin.items.list') }}">📦 Lihat Daftar Barang</a>
+                <a class="btn-add" href="{{ route('admin.items.create') }}">➕ Tambah Barang</a>
+                <a class="btn-categories" href="{{ route('admin.categories') }}">🏷️ Kelola Kategori</a>
+            </div>
+        @else
+            <p class="guest-note">Silakan <a href="{{ route('login') }}">login</a> untuk mengakses fitur.</p>
+        @endauth
+    </div>
 </body>
 </html>
