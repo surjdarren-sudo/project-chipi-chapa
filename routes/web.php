@@ -19,18 +19,23 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/admin/items/create', [AdminController::class, 'create'])->name('admin.items.create');
-Route::post('/admin/items/store', [AdminController::class, 'store'])->name('admin.items.store');
+
+Route::get('/admin/items/create', [AdminController::class, 'create'])->middleware('auth')->name('admin.items.create');
+Route::post('/admin/items/store', [AdminController::class, 'store'])->middleware('auth')->name('admin.items.store');
+
 Route::get('/checkout/{id}/{qty}', [UserController::class, 'showCheckout'])->name('user.checkout');
 Route::post('/checkout', [UserController::class, 'checkout'])->name('user.checkout.post');
 Route::get('/katalog', [UserController::class, 'index'])->name('user.katalog');
+
 require __DIR__.'/auth.php';
+
 Route::get('/checkout-preview', [UserController::class, 'showCheckout'])->name('user.checkout.preview');
 Route::post('/checkout-store', [UserController::class, 'checkout'])->name('user.checkout.store');
-Route::get('/checkout-preview', [UserController::class, 'showCheckout'])->name('user.checkout.preview');
-Route::post('/checkout-store', [UserController::class, 'checkout'])->name('user.checkout.post');
 
-Route::get('/checkout-preview', [UserController::class, 'showCheckout'])->name('user.checkout.preview');
+Route::get('/admin/categories', function () {
+    return view('admin.manage-categories');
+})->middleware('auth')->name('admin.categories');
 
-
-Route::post('/checkout-store', [UserController::class, 'checkout'])->name('user.checkout.post');
+Route::get('/admin/items', function () {
+    return view('admin.items-list');
+})->middleware('auth')->name('admin.items.list');
