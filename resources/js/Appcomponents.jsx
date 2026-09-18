@@ -86,15 +86,45 @@ export default function AppComponents() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>{editingId ? 'Edit Barang' : 'Tambah Barang'}</h2>
+    <div style={{
+      maxWidth: '640px',
+      margin: '2rem auto',
+      padding: '2rem',
+      backgroundColor: '#ffffff',
+      borderRadius: '16px',
+      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+      border: '1px solid #e2e8f0',
+      fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+      boxSizing: 'border-box'
+    }}>
+      <h2 style={{
+        fontWeight: '700',
+        fontSize: '1.35rem',
+        marginBottom: '1.5rem',
+        color: '#0f172a',
+        letterSpacing: '-0.025em'
+      }}>
+        {editingId ? 'Edit Barang' : 'Tambah Barang'}
+      </h2>
 
-      <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+      <form onSubmit={handleSubmit} style={{ marginBottom: '2rem' }}>
         <select
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
           required
-          style={{ display: 'block', marginBottom: '8px', width: '100%', padding: '8px' }}
+          style={{
+            display: 'block',
+            marginBottom: '0.875rem',
+            width: '100%',
+            padding: '10px 14px',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            fontSize: '0.875rem',
+            outline: 'none',
+            boxSizing: 'border-box',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a'
+          }}
         >
           <option value="">-- Pilih Kategori --</option>
           {categories.map((cat) => (
@@ -105,57 +135,140 @@ export default function AppComponents() {
         <input
           type="text" placeholder="Nama barang" value={name}
           onChange={(e) => setName(e.target.value)} required
-          style={{ display: 'block', marginBottom: '8px', width: '100%', padding: '8px' }}
+          style={{
+            display: 'block',
+            marginBottom: '0.875rem',
+            width: '100%',
+            padding: '10px 14px',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            fontSize: '0.875rem',
+            outline: 'none',
+            boxSizing: 'border-box',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a'
+          }}
         />
         <input
           type="number" placeholder="Harga" value={price}
           onChange={(e) => setPrice(e.target.value)} required
-          style={{ display: 'block', marginBottom: '8px', width: '100%', padding: '8px' }}
+          style={{
+            display: 'block',
+            marginBottom: '0.875rem',
+            width: '100%',
+            padding: '10px 14px',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            fontSize: '0.875rem',
+            outline: 'none',
+            boxSizing: 'border-box',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a'
+          }}
         />
         <input
           type="number" placeholder="Jumlah" value={quantity}
           onChange={(e) => setQuantity(e.target.value)} required
-          style={{ display: 'block', marginBottom: '8px', width: '100%', padding: '8px' }}
+          style={{
+            display: 'block',
+            marginBottom: '1.25rem',
+            width: '100%',
+            padding: '10px 14px',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            fontSize: '0.875rem',
+            outline: 'none',
+            boxSizing: 'border-box',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a'
+          }}
         />
 
-        <button type="submit" style={{ padding: '8px 16px', marginRight: '8px' }}>
+        <button type="submit" style={{
+          padding: '10px 18px',
+          marginRight: '8px',
+          backgroundColor: editingId ? '#eab308' : '#2563eb',
+          color: '#ffffff',
+          border: 'none',
+          borderRadius: '8px',
+          fontWeight: '600',
+          fontSize: '0.875rem',
+          cursor: 'pointer',
+          boxShadow: editingId ? '0 4px 12px rgba(234, 179, 8, 0.2)' : '0 4px 12px rgba(37, 99, 235, 0.2)',
+          transition: 'all 0.2s ease'
+        }}>
           {editingId ? 'Update' : 'Tambah'} Barang
         </button>
         {editingId && (
-          <button type="button" onClick={resetForm} style={{ padding: '8px 16px' }}>
+          <button type="button" onClick={resetForm} style={{
+            padding: '10px 18px',
+            backgroundColor: '#f1f5f9',
+            color: '#475569',
+            border: '1px solid #cbd5e1',
+            borderRadius: '8px',
+            fontWeight: '600',
+            fontSize: '0.875rem',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}>
             Batal
           </button>
         )}
       </form>
 
       {loading ? (
-        <p>Memuat data...</p>
+        <p style={{ color: '#64748b', fontSize: '0.875rem', textAlign: 'center', padding: '1rem 0' }}>
+          Memuat data...
+        </p>
       ) : items.length === 0 ? (
-        <p>Belum ada barang.</p>
+        <p style={{ color: '#64748b', fontSize: '0.875rem', textAlign: 'center', padding: '1rem 0' }}>
+          Belum ada barang.
+        </p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '2px solid #ddd' }}>
-              <th style={{ textAlign: 'left', padding: '8px' }}>Nama</th>
-              <th style={{ textAlign: 'left', padding: '8px' }}>Harga</th>
-              <th style={{ textAlign: 'left', padding: '8px' }}>Stok</th>
-              <th style={{ padding: '8px' }}>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={{ padding: '8px' }}>{item.name}</td>
-                <td style={{ padding: '8px' }}>Rp{item.price}</td>
-                <td style={{ padding: '8px' }}>{item.quantity}</td>
-                <td style={{ padding: '8px' }}>
-                  <button onClick={() => handleEdit(item)} style={{ marginRight: '8px' }}>Edit</button>
-                  <button onClick={() => handleDelete(item.id)}>Hapus</button>
-                </td>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: '0' }}>
+            <thead>
+              <tr style={{ backgroundColor: '#f8fafc' }}>
+                <th style={{ textAlign: 'left', padding: '12px 14px', fontSize: '0.75rem', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '2px solid #e2e8f0', borderRadius: '8px 0 0 0' }}>Nama</th>
+                <th style={{ textAlign: 'left', padding: '12px 14px', fontSize: '0.75rem', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '2px solid #e2e8f0' }}>Harga</th>
+                <th style={{ textAlign: 'left', padding: '12px 14px', fontSize: '0.75rem', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '2px solid #e2e8f0' }}>Stok</th>
+                <th style={{ textAlign: 'right', padding: '12px 14px', fontSize: '0.75rem', fontWeight: '700', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '2px solid #e2e8f0', borderRadius: '0 8px 0 0' }}>Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {items.map((item) => (
+                <tr key={item.id} style={{ transition: 'background-color 0.15s ease' }}>
+                  <td style={{ padding: '12px 14px', fontSize: '0.875rem', fontWeight: '500', color: '#0f172a', borderBottom: '1px solid #f1f5f9' }}>{item.name}</td>
+                  <td style={{ padding: '12px 14px', fontSize: '0.875rem', color: '#334155', borderBottom: '1px solid #f1f5f9' }}>Rp{item.price?.toLocaleString()}</td>
+                  <td style={{ padding: '12px 14px', fontSize: '0.875rem', color: '#334155', borderBottom: '1px solid #f1f5f9' }}>{item.quantity}</td>
+                  <td style={{ padding: '12px 14px', textAlign: 'right', borderBottom: '1px solid #f1f5f9' }}>
+                    <button onClick={() => handleEdit(item)} style={{
+                      marginRight: '6px',
+                      padding: '6px 12px',
+                      backgroundColor: '#3b82f6',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '0.75rem',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}>Edit</button>
+                    <button onClick={() => handleDelete(item.id)} style={{
+                      padding: '6px 12px',
+                      backgroundColor: '#ef4444',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '0.75rem',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}>Hapus</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
